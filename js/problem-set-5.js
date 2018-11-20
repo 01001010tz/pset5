@@ -152,9 +152,11 @@ function credit() {
  */
 
 function guess() {
-
-  // WRITE YOUR EXERCISE 4 CODE HERE
-
+let target = Math.randomInt(1, 1000);
+let guess = prompt("Please enter a whole number between 1 and 1000");
+if (guess > 1000)||(guess < 1)||(!Number.isInteger(guess)) {
+  prompt("Invalid guess. Please enter a whole number between 1 and 1000");
+}
   ////////////////// DO NOT MODIFY
   check('guess'); // DO NOT MODIFY
   ////////////////// DO NOT MODIFY
