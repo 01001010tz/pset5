@@ -114,7 +114,10 @@ function credit() {
   let card; // DO NOT MODIFY
   //////////// DO NOT MODIFY
 
-  // WRITE YOUR EXERCISE 3 CODE HERE
+do {
+  card = prompt("Please enter a credit card number")
+} while (valid == false)
+
 
   /*
    * NOTE: After reading in the card number and storing it in the 'card'
@@ -153,10 +156,36 @@ function credit() {
 
 function guess() {
 let target = Math.randomInt(1, 1000);
-let guess = prompt("Please enter a whole number between 1 and 1000");
-if (guess > 1000)||(guess < 1)||(!Number.isInteger(guess)) {
-  prompt("Invalid guess. Please enter a whole number between 1 and 1000");
+let guessCount;
+let guess;
+let found;
+let AllGuesses;
+
+do {
+  guess = prompt("Please guess a whole number between 1 and 1000");
+} while (guess < 1) || (guess > 1000) || (!Number.isInteger(guess));
+
+
+if (guess >= 1) && (guess <= 1000) && (Number.isInteger(guess)) {
+  for (guessCount = 0; found == true; guessCount++) {
+    if (guess > target) {
+      hint = document.getElementById("guess-output");
+      hint.innerHTML = "Guess was greater than target. Try again!";
+    }
+    if (guess < target) {
+      hint = document.getElementById("guess-output");
+      hint.innerHTML = "Guess was less than target. Try again!";
+    }
+    if (guess == target) {
+      hint = document.getElementById("guess-output");
+      hint.innerHTML = "Congratulations, you've found the number!";
+    }
+    AllGuesses = AllGuesses + "guess";
+    AllGuesses = document.getElementById("guess-output");
+    AllGuesses.innerHTML = AllGuesses + "guessCount";
+  }
 }
+
   ////////////////// DO NOT MODIFY
   check('guess'); // DO NOT MODIFY
   ////////////////// DO NOT MODIFY
@@ -191,7 +220,36 @@ function hurricane() {
   ///////////////// DO NOT MODIFY
   let windspeed; // DO NOT MODIFY
   ///////////////// DO NOT MODIFY
+  let Category;
+do {
+  windspeed = prompt("Please enter a whole windspeed greater than 0");
+} while (windspeed < 0) || (!Number.isInteger(windspeed));
 
+//Need to double check reprompt parameters; will come back to correct.
+while (windspeed > 0) && (Number.isInteger(windspeed)){
+  if(windspeed < 39){
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "No category";
+  } else if (windspeed >= 39) && (windspeed <= 73) {
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "Tropical Storm";
+  } else if (windspeed >= 74) && (windspeed <= 95) {
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "Category 1";
+  } else if (windspeed >= 96) && (windspeed <= 110) {
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "Category 2";
+  } else if (windspeed >= 111) && (windspeed <= 129) {
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "Category 3";
+  } else if (windspeed >= 130) && (windspeed <= 156) {
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "Category 4";
+  } else {
+    Category = document.getElementById("hurricane-output");
+    Category.innerHTML = "Category 5";
+  }
+}
   ///////////////////////////////// DO NOT MODIFY
   check('hurricane', windspeed); // DO NOT MODIFY
   ///////////////////////////////// DO NOT MODIFY
