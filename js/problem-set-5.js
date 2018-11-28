@@ -25,9 +25,29 @@ function mario() {
   ////////////// DO NOT MODIFY
   let height; // DO NOT MODIFY
   ////////////// DO NOT MODIFY
+let blocks;
+let rowCount;
+let layer = "";
+let spaceCount;
+let starCount;
 
-  // WRITE YOUR EXERCISE 1 CODE HERE
+do {
+  height = prompt("Please enter a whole number between 1 and 23.");
+} while (height < 1) || (height > 23) || !Number.isInteger(height);
 
+if (height > 1) && (height < 23) && Number.isInteger(height){
+  for (rowCount = 1; rowCount == height; rowCount++) {
+    for (spaceCount=1; spaceCount =(height - rowCount); spaceCount++ ) {
+      layer += " ";
+    }
+    for (starCount = 1; starCount = rowCount; starCount++) {
+      layer += "*";
+    }
+    Pyramid = document.getElementById("mario-easy-output");
+    Pyramid.innerHTML = "spaceCount" + "starCount";
+  }
+
+}
   ////////////////////////// DO NOT MODIFY
   check('mario', height); // DO NOT MODIFY
   ////////////////////////// DO NOT MODIFY
@@ -60,9 +80,28 @@ function marioAgain() {
   ////////////// DO NOT MODIFY
   let height; // DO NOT MODIFY
   ////////////// DO NOT MODIFY
+  let blocks;
+  let rowCount;
+  let layer = "";
+  let spaceCount;
+  let starCount;
 
-  // WRITE YOUR EXERCISE 2 CODE HERE
+  do {
+    height = prompt("Please enter a whole number between 1 and 23.");
+  } while (height < 1) || (height > 23) || !Number.isInteger(height);
 
+  if (height > 1) && (height < 23) && Number.isInteger(height){
+    for (rowCount = 1; rowCount == height; rowCount++) {
+      for (spaceCount = 1; spaceCount == (height - rowCount); spaceCount++ ) {
+        layer += " ";
+      }
+      for (starCount = 1; starCount == rowCount; starCount++) {
+        layer += "*";
+      }
+      Pyramid = document.getElementById("mario-easy-output");
+      Pyramid.innerHTML = "spaceCount" + "starCount"; + "  " + "starCount";
+    }
+  }
   //////////////////////////////// DO NOT MODIFY
   check('mario-again', height); // DO NOT MODIFY
   //////////////////////////////// DO NOT MODIFY
@@ -113,10 +152,11 @@ function credit() {
   //////////// DO NOT MODIFY
   let card; // DO NOT MODIFY
   //////////// DO NOT MODIFY
-
 do {
-  card = prompt("Please enter a credit card number")
-} while (valid == false)
+  card = prompt("Please enter a credit card number");
+} while !Number.isInteger(card);
+
+
 
 
   /*
@@ -167,6 +207,7 @@ do {
 
 
 if (guess >= 1) && (guess <= 1000) && (Number.isInteger(guess)) {
+  //Loops until you find it, gives GuessCount.
   for (guessCount = 0; found == true; guessCount++) {
     if (guess > target) {
       hint = document.getElementById("guess-output");
@@ -176,10 +217,13 @@ if (guess >= 1) && (guess <= 1000) && (Number.isInteger(guess)) {
       hint = document.getElementById("guess-output");
       hint.innerHTML = "Guess was less than target. Try again!";
     }
+    //If it's right
     if (guess == target) {
+      found = true;
       hint = document.getElementById("guess-output");
       hint.innerHTML = "Congratulations, you've found the number!";
     }
+    //Prints previous guesses, number of guesses
     AllGuesses = AllGuesses + "guess";
     AllGuesses = document.getElementById("guess-output");
     AllGuesses.innerHTML = AllGuesses + "guessCount";
