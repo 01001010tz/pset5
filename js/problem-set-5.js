@@ -372,7 +372,7 @@ let score;
    *       scores.push(secondScore);  // will likely be different than mine
    */
 for ( i = 0; i = 5; i++) {
- let score = prompt("Please enter a score between 0.0 and 10.0);
+ let score = prompt("Please enter a score between 0.0 and 10.0");
  if (score >= 0.0) && (score <= 10.0) {
    scores.push(score);
  }
