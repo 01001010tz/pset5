@@ -156,8 +156,42 @@ do {
   card = prompt("Please enter a credit card number");
 } while !Number.isInteger(card);
 
+let cardString = Num.toString(card);
+let luhnValid;
+let luhnTotal;
+let i;
 
-
+if (cardString.length % 2 == 0) {
+  i = 0;
+} else {
+  i = 1;
+}
+  
+for (i; i >= cardString.length; i += 2) {
+   luhnTotal += (2 * Number(cardString.charAt(i)));
+}
+  
+for (i - 1; i >= cardString.length; i += 2) {
+  luhnTotal += Number(cardString.charAt(i));
+}
+  
+if (luhnTotal % 10 == 0){
+  luhnValid = true;
+}
+///Need to add image sources here; couldn't do from home...
+if (luhnValid == true) && (cardString.length == 15) && (cardString.charAt(0) == 3) && ((cardString.charAt(1) == 4) || (cardString.charAt(1) == 7)){
+  creditType = document.getElementById("credit-output");
+  creditType.innerHTML = "<img src=".png">";
+} else if (luhnValid == true) && (cardString.length == 16) && (cardString.charAt(0) == 5) && (cardString.charAt(1) > 0) && (cardString.charAt(1) < 6) {
+  creditType = document.getElementById("credit-output");
+  creditType.innerHTML = "<img src=".png">";
+} else if (luhnValid == true) && ((cardString.length == 13) || (cardString.length == 16)) && (cardString.charAt(0) == 4){
+  creditType = document.getElementById("credit-output");
+  creditType.innerHTML = "<img src=".png">";
+} else {
+  creditType = document.getElementById("credit-output");
+  creditType.innerHTML = "<img src=".png">";
+}
 
   /*
    * NOTE: After reading in the card number and storing it in the 'card'
@@ -323,7 +357,8 @@ function gymnastics() {
   let total = 0; //// DO NOT MODIFY
   let scores = []; // DO NOT MODIFY
   /////////////////// DO NOT MODIFY
-
+let i;
+let score;
   /*
    * NOTE: The 'total' variable should be representative of the sum of all
    *       six of the judges' scores.
@@ -336,7 +371,21 @@ function gymnastics() {
    *       scores.push(firstScore);   // your variable names for your scores
    *       scores.push(secondScore);  // will likely be different than mine
    */
+for ( i = 0; i = 5; i++) {
+ let score = prompt("Please enter a score between 0.0 and 10.0);
+ if (score >= 0.0) && (score <= 10.0) {
+   scores.push(score);
+ }
+}
 
+let scoresTotal = scores.reduce(getSum)
+let maxSI = scores.indexOf(Math.max(...scores));
+let minSI = scores.indexOf(Math.min(...scores));
+scoresTotal -= (scores[maxSI] + scores[minSI]);
+let scoreAvg = (scoresTotal/4).toFixed(2);
+  
+endScores = document.getElementById("gymnastics-output);
+endScores.innerHTML =  "Discarded: " + scores[minSI] + ", " + scores[maxSI]" + "<br/>Score: " + scoreAvg;
   /////////////////////////////// DO NOT MODIFY
   check('gymnastics', scores); // DO NOT MODIFY
   /////////////////////////////// DO NOT MODIFY
@@ -388,7 +437,57 @@ function reportCard() {
    *       representative of the number of tests, quizzes, and homework
    *       grades the user enters, respectively.
    */
+let testScoresDone = false;
+let testScoresInput;
+while (testScoresDone == false) {
+ do {
+  testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
+ } while (!Number.(testScoresInput) > 0) || (Number.(testScoresInput) > 100))
+ if (testScoresInput != -1) {
+  testTotal += testScoresInput;
+  tests++;
+ }else {
+  testScoresDone = true; 
+ }
+}
+let testAvg = testTotal/tests;
+  
+  
+let quizScoresDone = false;
+let quizScoresInput;
+while (quizScoresDone == false) {
+ do {
+  quizScoresInput = prompt("Please enter either a quiz score between 1 and 100 or -1 to indicate that you have finished entering quiz scores");
+ } while (!Number.(quizScoresInput) > 0) || (Number.(quizScoresInput) > 100))
+ if (quizScoresInput != -1) {
+  quizTotal += quizScoresInput;
+  quizzes++;
+ }else {
+  testScoresDone = true; 
+ }
+}
+let quizAvg = quizTotal/quizzes;
+  
+  
+let hwScoresDone = false;
+let hwScoresInput;
+while (hwScoresDone == false) {
+ do {
+  hwScoresInput = prompt("Please enter either a homework score between 1 and 100 or -1 to indicate that you have finished entering homework scores");
+ } while (!Number.(hwScoresInput) > 0) || (Number.(hwScoresInput) > 100))
+ if (hwScoresInput != -1) {
+  homeworkTotal += hwScoresInput;
+  homeworks++;
+ }else {
+  hwScoresDone = true; 
+ }
+}
+let hwAvg = homeworkTotal/homeworks;
 
+let oaAvg = ((testAvg * .6) + (quizAvg * .3) + (hwAvg * .1)).toFixed(2)  
+
+let averages = document.getElementById("report-card-output");
+averages.innerHTML = "Tests: " testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/> Grade: " + oaAvg;
   /////////////////////// DO NOT MODIFY
   check('report-card', // DO NOT MODIFY
     testTotal, ////////// DO NOT MODIFY
