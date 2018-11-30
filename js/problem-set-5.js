@@ -25,29 +25,45 @@ function mario() {
   ////////////// DO NOT MODIFY
   let height; // DO NOT MODIFY
   ////////////// DO NOT MODIFY
-let blocks;
-let rowCount;
-let layer = "";
-let spaceCount;
-let starCount;
+let i = 1;
+let layer = "<code>";
+let spacesNumber = height - 2;
+let pounds='#';
 
-do {
-  height = prompt("Please enter a whole number between 1 and 23.");
-} while (height < 1) || (height > 23) || !Number.isInteger(height);
 
-if (height > 1) && (height < 23) && Number.isInteger(height){
-  for (rowCount = 1; rowCount == height; rowCount++) {
-    for (spaceCount=1; spaceCount =(height - rowCount); spaceCount++ ) {
-      layer += " ";
-    }
-    for (starCount = 1; starCount = rowCount; starCount++) {
-      layer += "*";
-    }
-    Pyramid = document.getElementById("mario-easy-output");
-    Pyramid.innerHTML = "spaceCount" + "starCount";
+
+while (true) {
+  height = Number(prompt("Please enter a whole number between 1 and 23."));
+  if (height >= 1 && height <= 23 && Number.isInteger(height)) {
+    break;
   }
-
 }
+
+while (i <= height) {
+  let spacesActual="";
+  for (let counter = 0; counter <= spacesNumber ; counter++){
+    spacesActual += "&nbsp;";
+  }
+  spacesNumber--;
+  pounds += "#";
+  layer = layer + spacesActual + pounds + "</br>";
+  i++;
+}
+layer=layer+"</code>"
+pyramid = document.getElementById("mario-easy-output");
+pyramid.innerHTML = layer;
+
+/*for (rowCount = 1; rowCount <= height; rowCount++) {
+  for (let i=1; spaceCoun>=0; spaceCount--) {
+    layer += "&nbsp";
+  }
+  for (starCount = 1; starCount = rowCount; starCount++) {
+    layer += "#";
+  }
+  Pyramid = document.getElementById("mario-easy-output");
+  Pyramid.innerHTML = "spaceCount" + "starCount";
+}
+*/
   ////////////////////////// DO NOT MODIFY
   check('mario', height); // DO NOT MODIFY
   ////////////////////////// DO NOT MODIFY
@@ -88,9 +104,9 @@ function marioAgain() {
 
   do {
     height = prompt("Please enter a whole number between 1 and 23.");
-  } while (height < 1) || (height > 23) || !Number.isInteger(height);
+  } while ((height < 1) || (height > 23) || !Number.isInteger(height));
 
-  if (height > 1) && (height < 23) && Number.isInteger(height){
+  if ((height > 1) && (height < 23) && Number.isInteger(height)){
     for (rowCount = 1; rowCount == height; rowCount++) {
       for (spaceCount = 1; spaceCount == (height - rowCount); spaceCount++ ) {
         layer += " ";
@@ -152,9 +168,17 @@ function credit() {
   //////////// DO NOT MODIFY
   let card; // DO NOT MODIFY
   //////////// DO NOT MODIFY
+let cardString;
+
 do {
   card = prompt("Please enter a credit card number");
-} while !Number.isInteger(card);
+} while (!Number.isInteger(card));
+
+cardString = Num.toString(card);
+
+do {
+  card = prompt("Please enter a credit card number");
+} while (!Number.isInteger(card));
 
 let cardString = Num.toString(card);
 let luhnValid;
@@ -166,32 +190,33 @@ if (cardString.length % 2 == 0) {
 } else {
   i = 1;
 }
-  
+
 for (i; i >= cardString.length; i += 2) {
    luhnTotal += (2 * Number(cardString.charAt(i)));
 }
-  
+
 for (i - 1; i >= cardString.length; i += 2) {
   luhnTotal += Number(cardString.charAt(i));
 }
-  
+
 if (luhnTotal % 10 == 0){
   luhnValid = true;
 }
-///Need to add image sources here; couldn't do from home...
-if (luhnValid == true) && (cardString.length == 15) && (cardString.charAt(0) == 3) && ((cardString.charAt(1) == 4) || (cardString.charAt(1) == 7)){
-  creditType = document.getElementById("credit-output");
-  creditType.innerHTML = "<img src=".png">";
-} else if (luhnValid == true) && (cardString.length == 16) && (cardString.charAt(0) == 5) && (cardString.charAt(1) > 0) && (cardString.charAt(1) < 6) {
-  creditType = document.getElementById("credit-output");
-  creditType.innerHTML = "<img src=".png">";
-} else if (luhnValid == true) && ((cardString.length == 13) || (cardString.length == 16)) && (cardString.charAt(0) == 4){
-  creditType = document.getElementById("credit-output");
-  creditType.innerHTML = "<img src=".png">";
+
+if ((cardString.length == 15) && (luhnValid == true) && (card.charAt(0) == 3) && ((card.charAt(1) == 4) || (card,charAt(1) == 7))) {
+  imgOutput = document.getElementById("credit-output");
+  imgOutput.innerHTML = "<img src='images/amex.png'>";
+} else if ((cardString.length == 16) && (luhnValid == true) && (card.CharAt(0) == 5) && ((Number.card.charAt(1) > 0)  && (Number.card.charAt(1) < 6))) {
+  imgOutput = document.getElementById("credit-output");
+  imgOutput.innerHTML = "<img src='images/mastercard.png'>";
+} else if (((cardString.length == 13) || (card.length == 16)) && (luhnValid == true) && (card.CharAt(0) == 4)) {
+  imgOutput = document.getElementById("credit-output");
+  imgOutput.innerHTML = "<img src='images/visa.png'>";
 } else {
-  creditType = document.getElementById("credit-output");
-  creditType.innerHTML = "<img src=".png">";
+  imgOutput = document.getElementById("credit-output");
+  imgOutput.innerHTML = "<img src='images/invalid.png'>";
 }
+
 
   /*
    * NOTE: After reading in the card number and storing it in the 'card'
@@ -237,10 +262,10 @@ let AllGuesses;
 
 do {
   guess = prompt("Please guess a whole number between 1 and 1000");
-} while (guess < 1) || (guess > 1000) || (!Number.isInteger(guess));
+} while ((guess < 1) || (guess > 1000) || (!Number.isInteger(guess)));
 
 
-if (guess >= 1) && (guess <= 1000) && (Number.isInteger(guess)) {
+if ((guess >= 1) && (guess <= 1000) && (Number.isInteger(guess))) {
   //Loops until you find it, gives GuessCount.
   for (guessCount = 0; found == true; guessCount++) {
     if (guess > target) {
@@ -301,26 +326,26 @@ function hurricane() {
   let Category;
 do {
   windspeed = prompt("Please enter a whole windspeed greater than 0");
-} while (windspeed < 0) || (!Number.isInteger(windspeed));
+} while ((windspeed < 0) || (!Number.isInteger(windspeed)));
 
 //Need to double check reprompt parameters; will come back to correct.
-while (windspeed > 0) && (Number.isInteger(windspeed)){
+while ((windspeed > 0) && (Number.isInteger(windspeed))){
   if(windspeed < 39){
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "No category";
-  } else if (windspeed >= 39) && (windspeed <= 73) {
+  } else if ((windspeed >= 39) && (windspeed <= 73)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Tropical Storm";
-  } else if (windspeed >= 74) && (windspeed <= 95) {
+  } else if ((windspeed >= 74) && (windspeed <= 95)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Category 1";
-  } else if (windspeed >= 96) && (windspeed <= 110) {
+  } else if ((windspeed >= 96) && (windspeed <= 110)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Category 2";
-  } else if (windspeed >= 111) && (windspeed <= 129) {
+  } else if ((windspeed >= 111) && (windspeed <= 129)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Category 3";
-  } else if (windspeed >= 130) && (windspeed <= 156) {
+  } else if ((windspeed >= 130) && (windspeed <= 156)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Category 4";
   } else {
@@ -357,8 +382,7 @@ function gymnastics() {
   let total = 0; //// DO NOT MODIFY
   let scores = []; // DO NOT MODIFY
   /////////////////// DO NOT MODIFY
-let i;
-let score;
+
   /*
    * NOTE: The 'total' variable should be representative of the sum of all
    *       six of the judges' scores.
@@ -371,21 +395,23 @@ let score;
    *       scores.push(firstScore);   // your variable names for your scores
    *       scores.push(secondScore);  // will likely be different than mine
    */
-for ( i = 0; i = 5; i++) {
- let score = prompt("Please enter a score between 0.0 and 10.0");
- if (score >= 0.0) && (score <= 10.0) {
-   scores.push(score);
- }
-}
+   let i;
+   let score;
+   for ( i = 0; i = 5; i++) {
+    let score = prompt("Please enter a score between 0.0 and 10.0");
+    if ((score >= 0.0) && (score <= 10.0)) {
+      scores.push(score);
+    }
+   }
 
-let scoresTotal = scores.reduce(getSum)
-let maxSI = scores.indexOf(Math.max(...scores));
-let minSI = scores.indexOf(Math.min(...scores));
-scoresTotal -= (scores[maxSI] + scores[minSI]);
-let scoreAvg = (scoresTotal/4).toFixed(2);
-  
-endScores = document.getElementById("gymnastics-output);
-endScores.innerHTML =  "Discarded: " + scores[minSI] + ", " + scores[maxSI]" + "<br/>Score: " + scoreAvg;
+   let scoresTotal = scores.reduce(getSum)
+   let maxSI = scores.indexOf(Math.max(...scores));
+   let minSI = scores.indexOf(Math.min(...scores));
+   scoresTotal -= (scores[maxSI] + scores[minSI]);
+   let scoreAvg = (scoresTotal/4).toFixed(2);
+
+   endScores = document.getElementById("gymnastics-output");
+   endScores.innerHTML =  "Discarded: " + scores[minSI] + ", " + scores[maxSI] + "<br/>Score: " + scoreAvg;
   /////////////////////////////// DO NOT MODIFY
   check('gymnastics', scores); // DO NOT MODIFY
   /////////////////////////////// DO NOT MODIFY
@@ -437,57 +463,57 @@ function reportCard() {
    *       representative of the number of tests, quizzes, and homework
    *       grades the user enters, respectively.
    */
-let testScoresDone = false;
-let testScoresInput;
-while (testScoresDone == false) {
- do {
-  testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
- } while (!Number.(testScoresInput) > 0) || (Number.(testScoresInput) > 100))
- if (testScoresInput != -1) {
-  testTotal += testScoresInput;
-  tests++;
- }else {
-  testScoresDone = true; 
- }
-}
-let testAvg = testTotal/tests;
-  
-  
-let quizScoresDone = false;
-let quizScoresInput;
-while (quizScoresDone == false) {
- do {
-  quizScoresInput = prompt("Please enter either a quiz score between 1 and 100 or -1 to indicate that you have finished entering quiz scores");
- } while (!Number.(quizScoresInput) > 0) || (Number.(quizScoresInput) > 100))
- if (quizScoresInput != -1) {
-  quizTotal += quizScoresInput;
-  quizzes++;
- }else {
-  testScoresDone = true; 
- }
-}
-let quizAvg = quizTotal/quizzes;
-  
-  
-let hwScoresDone = false;
-let hwScoresInput;
-while (hwScoresDone == false) {
- do {
-  hwScoresInput = prompt("Please enter either a homework score between 1 and 100 or -1 to indicate that you have finished entering homework scores");
- } while (!Number.(hwScoresInput) > 0) || (Number.(hwScoresInput) > 100))
- if (hwScoresInput != -1) {
-  homeworkTotal += hwScoresInput;
-  homeworks++;
- }else {
-  hwScoresDone = true; 
- }
-}
-let hwAvg = homeworkTotal/homeworks;
+   let testScoresDone = false;
+   let testScoresInput;
+   while (testScoresDone == false) {
+    do {
+     testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
+   } while ((!Number.testScoresInput > 0) || (Number.testScoresInput > 100))
+    if (testScoresInput != -1) {
+     testTotal += testScoresInput;
+     tests++;
+    }else {
+     testScoresDone = true;
+    }
+   }
+   let testAvg = testTotal/tests;
 
-let oaAvg = ((testAvg * .6) + (quizAvg * .3) + (hwAvg * .1)).toFixed(2)  
 
-let averages = document.getElementById("report-card-output");
-averages.innerHTML = "Tests: " testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/> Grade: " + oaAvg;
+   let quizScoresDone = false;
+   let quizScoresInput;
+   while (quizScoresDone == false) {
+    do {
+     quizScoresInput = prompt("Please enter either a quiz score between 1 and 100 or -1 to indicate that you have finished entering quiz scores");
+   } while ((!Number.quizScoresInput > 0) || (Number.quizScoresInput > 100))
+    if (quizScoresInput != -1) {
+     quizTotal += quizScoresInput;
+     quizzes++;
+    }else {
+     testScoresDone = true;
+    }
+   }
+   let quizAvg = quizTotal/quizzes;
+
+
+   let hwScoresDone = false;
+   let hwScoresInput;
+   while (hwScoresDone == false) {
+    do {
+     hwScoresInput = prompt("Please enter either a homework score between 1 and 100 or -1 to indicate that you have finished entering homework scores");
+   } while ((!Number.hwScoresInput > 0) || (Number.hwScoresInput > 100))
+    if (hwScoresInput != -1) {
+     homeworkTotal += hwScoresInput;
+     homeworks++;
+    }else {
+     hwScoresDone = true;
+    }
+   }
+   let hwAvg = homeworkTotal/homeworks;
+
+   let oaAvg = ((testAvg * .6) + (quizAvg * .3) + (hwAvg * .1)).toFixed(2)
+
+   let Averages = document.getElementById("report-card-output");
+   Averages.innerHTML = "Tests: " + testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/> Grade: " + oaAvg;
   /////////////////////// DO NOT MODIFY
   check('report-card', // DO NOT MODIFY
     testTotal, ////////// DO NOT MODIFY
