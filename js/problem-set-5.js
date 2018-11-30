@@ -96,28 +96,33 @@ function marioAgain() {
   ////////////// DO NOT MODIFY
   let height; // DO NOT MODIFY
   ////////////// DO NOT MODIFY
-  let blocks;
-  let rowCount;
-  let layer = "";
-  let spaceCount;
-  let starCount;
+ let i = 1;
+let layer = "<code>";
+let spacesNumber = height - 2;
+let pounds='#';
 
-  do {
-    height = prompt("Please enter a whole number between 1 and 23.");
-  } while ((height < 1) || (height > 23) || !Number.isInteger(height));
 
-  if ((height > 1) && (height < 23) && Number.isInteger(height)){
-    for (rowCount = 1; rowCount == height; rowCount++) {
-      for (spaceCount = 1; spaceCount == (height - rowCount); spaceCount++ ) {
-        layer += " ";
-      }
-      for (starCount = 1; starCount == rowCount; starCount++) {
-        layer += "*";
-      }
-      Pyramid = document.getElementById("mario-easy-output");
-      Pyramid.innerHTML = "spaceCount" + "starCount"; + "  " + "starCount";
-    }
+
+while (true) {
+  height = Number(prompt("Please enter a whole number between 1 and 23."));
+  if (height >= 1 && height <= 23 && Number.isInteger(height)) {
+    break;
   }
+}
+
+while (i <= height) {
+  let spacesActual="";
+  for (let counter = 0; counter <= spacesNumber ; counter++){
+    spacesActual += "&nbsp;";
+  }
+  spacesNumber--;
+  pounds += "#";
+  layer = layer + spacesActual + pounds + "  " + pounds + "</br>";
+  i++;
+}
+layer=layer+"</code>"
+pyramid = document.getElementById("mario-hard-output");
+pyramid.innerHTML = layer;
   //////////////////////////////// DO NOT MODIFY
   check('mario-again', height); // DO NOT MODIFY
   //////////////////////////////// DO NOT MODIFY
