@@ -342,7 +342,7 @@ while (true) {
 //Need to double check reprompt parameters; will come back to correct.
   if(windspeed < 39){
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "The skies are calm ...";
+    Category.innerHTML = "The skies are calm...";
   } else if ((windspeed >= 39) && (windspeed <= 73)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Tropical Storm Hurricane.";
