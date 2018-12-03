@@ -175,10 +175,13 @@ function credit() {
   //////////// DO NOT MODIFY
 let cardString;
 
-do {
-  card = prompt("Please enter a credit card number");
-} while (!Number.isInteger(card));
-
+while (true) {
+  card = Number(prompt("Please enter a credit card number"));
+  if (Number.isInteger(card)) {
+    break;
+  }
+} 
+  
 cardString = Num.toString(card);
 
 do {
@@ -265,12 +268,13 @@ let guess;
 let found;
 let AllGuesses;
 
-do {
-  guess = prompt("Please guess a whole number between 1 and 1000");
-} while ((guess < 1) || (guess > 1000) || (!Number.isInteger(guess)));
+  while (true) {
+   guess = Number(prompt("Please guess a whole number between 1 and 1000")); 
+   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000) {
+     break;
+   }
+  }
 
-
-if ((guess >= 1) && (guess <= 1000) && (Number.isInteger(guess))) {
   //Loops until you find it, gives GuessCount.
   for (guessCount = 0; found == true; guessCount++) {
     if (guess > target) {
@@ -292,7 +296,7 @@ if ((guess >= 1) && (guess <= 1000) && (Number.isInteger(guess))) {
     AllGuesses = document.getElementById("guess-output");
     AllGuesses.innerHTML = AllGuesses + "guessCount";
   }
-}
+
 
   ////////////////// DO NOT MODIFY
   check('guess'); // DO NOT MODIFY
@@ -329,12 +333,13 @@ function hurricane() {
   let windspeed; // DO NOT MODIFY
   ///////////////// DO NOT MODIFY
   let Category;
-do {
-  windspeed = prompt("Please enter a whole windspeed greater than 0");
-} while ((windspeed < 0) || (!Number.isInteger(windspeed)));
-
+while (true) {
+  windspeed = Number(prompt("Please enter a whole windspeed 0 or greater"));
+  if (windspeed >= 0 && Number.isInteger(windspeed)) {
+    break;
+  }
+}
 //Need to double check reprompt parameters; will come back to correct.
-while ((windspeed > 0) && (Number.isInteger(windspeed))){
   if(windspeed < 39){
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "No category";
@@ -357,7 +362,7 @@ while ((windspeed > 0) && (Number.isInteger(windspeed))){
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Category 5";
   }
-}
+
   ///////////////////////////////// DO NOT MODIFY
   check('hurricane', windspeed); // DO NOT MODIFY
   ///////////////////////////////// DO NOT MODIFY
@@ -474,6 +479,8 @@ function reportCard() {
     do {
      testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
    } while ((!Number.testScoresInput > 0) || (Number.testScoresInput > 100))
+   //Probably will need to fix this with just "while" later, considering past failures with do whiles.  
+     
     if (testScoresInput != -1) {
      testTotal += testScoresInput;
      tests++;
