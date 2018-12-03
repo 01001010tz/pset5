@@ -27,7 +27,6 @@ function mario() {
   ////////////// DO NOT MODIFY
 let i = 1;
 let layer = "<code>";
-let spacesNumber = height - 2;
 let pounds='#';
 
 
@@ -38,6 +37,7 @@ while (true) {
     break;
   }
 }
+let spacesNumber = height-2;
 
 while (i <= height) {
   let spacesActual='';
@@ -98,10 +98,7 @@ function marioAgain() {
   ////////////// DO NOT MODIFY
  let i = 1;
 let layer = "<code>";
-let spacesNumber = height - 2;
 let pounds='#';
-
-
 
 while (true) {
   height = Number(prompt("Please enter a whole number between 1 and 23."));
@@ -110,6 +107,8 @@ while (true) {
   }
 }
 
+let spacesNumber = height - 2;
+
 while (i <= height) {
   let spacesActual='';
   for (let counter = 0; counter <= spacesNumber ; counter++){
@@ -117,7 +116,7 @@ while (i <= height) {
   }
   spacesNumber--;
   pounds += "#";
-  layer = layer + spacesActual + pounds + "  " + pounds + "</br>";
+  layer = layer + spacesActual + pounds + "&nbsp;" + "&nbsp;" + pounds + "</br>";
   i++;
 }
 layer=layer+"</code>"
@@ -180,15 +179,10 @@ while (true) {
   if (Number.isInteger(card)) {
     break;
   }
-} 
-  
-cardString = Num.toString(card);
+}
 
-do {
-  card = prompt("Please enter a credit card number");
-} while (!Number.isInteger(card));
+cardString = Number.toString(card);
 
-let cardString = Num.toString(card);
 let luhnValid;
 let luhnTotal;
 let i;
@@ -201,24 +195,28 @@ if (cardString.length % 2 == 0) {
 
 for (i; i >= cardString.length; i += 2) {
    luhnTotal += (2 * Number(cardString.charAt(i)));
+   // alert("luhn pt 1 works");
 }
 
 for (i - 1; i >= cardString.length; i += 2) {
   luhnTotal += Number(cardString.charAt(i));
+  // alert("luhn pt 2 works");
 }
 
 if (luhnTotal % 10 == 0){
   luhnValid = true;
+  // alert("luhn valid");
 }
 
-if ((cardString.length == 15) && (luhnValid == true) && (card.charAt(0) == 3) && ((card.charAt(1) == 4) || (card,charAt(1) == 7))) {
-  imgOutput = document.getElementById("credit-output");
+if ((cardString.length == 15) && (luhnValid == true) && (card.charAt(0) == 3) && ((Number(card.charAt(1)) == 4) || (Number(card.charAt(1)) == 7))) {
+  let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/amex.png'>";
-} else if ((cardString.length == 16) && (luhnValid == true) && (card.CharAt(0) == 5) && ((Number.card.charAt(1) > 0)  && (Number.card.charAt(1) < 6))) {
-  imgOutput = document.getElementById("credit-output");
+  alert("amex works");
+} else if ((cardString.length == 16) && (luhnValid == true) && (card.CharAt(0) == 5) && ((Number(card.charAt(1)) > 0)  && (Number(card.charAt(1)) < 6))) {
+  let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/mastercard.png'>";
-} else if (((cardString.length == 13) || (card.length == 16)) && (luhnValid == true) && (card.CharAt(0) == 4)) {
-  imgOutput = document.getElementById("credit-output");
+} else if (((cardString.length == 13) || (card.length == 16)) && (luhnValid == true) && (Number(card.CharAt(0)) == 4)) {
+  let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/visa.png'>";
 } else {
   imgOutput = document.getElementById("credit-output");
@@ -269,14 +267,14 @@ let found;
 let AllGuesses;
 
   while (true) {
-   guess = Number(prompt("Please guess a whole number between 1 and 1000")); 
+   guess = Number(prompt("Please guess a whole number between 1 and 1000"));
    if (Number.isInteger(guess) && guess >= 1 && guess <= 1000) {
      break;
    }
   }
 
   //Loops until you find it, gives GuessCount.
-  for (guessCount = 0; found == true; guessCount++) {
+  for (guessCount = 0; found == false; guessCount++) {
     if (guess > target) {
       hint = document.getElementById("guess-output");
       hint.innerHTML = "Guess was greater than target. Try again!";
@@ -479,8 +477,8 @@ function reportCard() {
     do {
      testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
    } while ((!Number.testScoresInput > 0) || (Number.testScoresInput > 100))
-   //Probably will need to fix this with just "while" later, considering past failures with do whiles.  
-     
+   //Probably will need to fix this with just "while" later, considering past failures with do whiles.
+
     if (testScoresInput != -1) {
      testTotal += testScoresInput;
      tests++;

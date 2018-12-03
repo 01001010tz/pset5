@@ -51,3 +51,7 @@ button:hover {
 .fail {
   background-color: #EF9A9A;
 }
+
+img {
+  width: 100%
+}
