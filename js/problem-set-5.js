@@ -342,25 +342,25 @@ while (true) {
 //Need to double check reprompt parameters; will come back to correct.
   if(windspeed < 39){
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "No category";
+    Category.innerHTML = "The skies are calm ...";
   } else if ((windspeed >= 39) && (windspeed <= 73)) {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Tropical Storm";
+    Category.innerHTML = "Tropical Storm Hurricane.";
   } else if ((windspeed >= 74) && (windspeed <= 95)) {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Category 1";
+    Category.innerHTML = "Category 1 Hurricane.";
   } else if ((windspeed >= 96) && (windspeed <= 110)) {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Category 2";
+    Category.innerHTML = "Category 2 Hurricane.";
   } else if ((windspeed >= 111) && (windspeed <= 129)) {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Category 3";
+    Category.innerHTML = "Category 3 Hurricane.";
   } else if ((windspeed >= 130) && (windspeed <= 156)) {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Category 4";
+    Category.innerHTML = "Category 4 Hurricane.";
   } else {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Category 5";
+    Category.innerHTML = "Category 5 Hurricane.";
   }
 
   ///////////////////////////////// DO NOT MODIFY
