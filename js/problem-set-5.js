@@ -343,7 +343,7 @@ while (true) {
     Category.innerHTML = "The skies are calm...";
   } else if ((windspeed >= 39) && (windspeed <= 73)) {
     Category = document.getElementById("hurricane-output");
-    Category.innerHTML = "Tropical Storm Hurricane.";
+    Category.innerHTML = "Tropical Storm.";
   } else if ((windspeed >= 74) && (windspeed <= 95)) {
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "Category 1 Hurricane.";
