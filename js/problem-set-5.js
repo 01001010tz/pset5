@@ -40,7 +40,7 @@ while (true) {
 }
 
 while (i <= height) {
-  let spacesActual="";
+  let spacesActual='';
   for (let counter = 0; counter <= spacesNumber ; counter++){
     spacesActual += "&nbsp;";
   }
@@ -111,7 +111,7 @@ while (true) {
 }
 
 while (i <= height) {
-  let spacesActual="";
+  let spacesActual='';
   for (let counter = 0; counter <= spacesNumber ; counter++){
     spacesActual += "&nbsp;";
   }
