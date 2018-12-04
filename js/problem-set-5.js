@@ -180,47 +180,60 @@ while (true) {
     break;
   }
 }
+//This bit keepts remprompting them until they put in a whole positive number and then stops
 
 cardString = Number.toString(card);
+//This bit's because I needed a string version of the card
 
 let luhnValid;
 let luhnTotal;
 let i;
+//This bit's to declare the variables for later
 
 if (cardString.length % 2 == 0) {
   i = 0;
 } else {
   i = 1;
 }
-
+//This makes sure I get the second to last character since the 
+//actual algorithm reads right to left but the character thing reads left to right
+  
 for (i; i >= cardString.length; i += 2) {
    luhnTotal += (2 * Number(cardString.charAt(i)));
    // alert("luhn pt 1 works");
 }
+//This bit gets every other one and doubles it as per the algorithm
 
 for (i - 1; i >= cardString.length; i += 2) {
   luhnTotal += Number(cardString.charAt(i));
   // alert("luhn pt 2 works");
 }
+//This bit gets the OTHER every other one and adds it as per the algorithm
 
 if (luhnTotal % 10 == 0){
   luhnValid = true;
   // alert("luhn valid");
 }
+  
+//This makes sure the last piece of the algorithm works by dividing it by 10.If it divides, it fits.
 
 if ((cardString.length == 15) && (luhnValid == true) && (card.charAt(0) == 3) && ((Number(card.charAt(1)) == 4) || (Number(card.charAt(1)) == 7))) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/amex.png'>";
   alert("amex works");
+  //The first if covers Amex, which is 15 characters long, begins with 34/37, and passes Luhn's
 } else if ((cardString.length == 16) && (luhnValid == true) && (card.CharAt(0) == 5) && ((Number(card.charAt(1)) > 0)  && (Number(card.charAt(1)) < 6))) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/mastercard.png'>";
+  //The second covers Mastercard, which is 16 long, begins with 51-55, and passes Luhn's
 } else if (((cardString.length == 13) || (card.length == 16)) && (luhnValid == true) && (Number(card.CharAt(0)) == 4)) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/visa.png'>";
+  //The third if covers Visa, which is 13 or 16 long, start with 4, and pass Luhn's
 } else {
   imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/invalid.png'>";
+  //This bit's for everything else
 }
 
 
