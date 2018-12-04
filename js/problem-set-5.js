@@ -269,33 +269,34 @@ if ((cardLength == 15) && (luhnValid == true) && (cardString[0] == 3) && ((Numbe
  */
 
 function guess() {
-let target = Math.random() * 1000;
-let guessCount;
+let target = Math.floor(Math.random() * 1000);
+let guessCount = 0;
 let guess;
-let found;
+let found = false;
 let AllGuesses;
 let hint;
 
   while (true) {
-   guess = Number(prompt("Please guess a whole number between 1 and 1000"));
-   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000) {
+   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000 && found == true) {
      break;
    }
   }
 
 
 while (found == false) {
+  do {
+  guess = Number(prompt("Please guess a whole number between 1 and 1000"));
+  } while (guess < 1 || guess > 1000 || !Number.isInteger(guess))
   if (guess > target) {
     hint = "Guess was greater than target. Try again!";
   } else if  (guess < target) {
     hint = "Guess was less than target. Try again!";
-
   } else if (guess == target) {
     found = true;
     hint = "Congratulations, you've found the number!";
     break;
-  }
-  AllGuesses = AllGuesses + "guess";
+  } guesscount++;
+  AllGuesses = AllGuesses + " " + guess;
   AllGuesses = document.getElementById("guess-output");
   AllGuesses.innerHTML = AllGuesses + "guessCount" + "hint";
 }
@@ -477,7 +478,10 @@ function gymnastics() {
         do {
          testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
        } while ((!Number(testScoresInput) > 0) || (Number(testScoresInput) > 100));
-       //Probably will need to fix this with just "while" later, considering past failures with do whiles.
+         /*Note that at first all algorithms were written with "do... while" loops to remprompt for the problem parameters
+         before most of the problems then proceeded not to work and stick me in an infinite prompt loop. This is the only one that
+         held out for me so I kept it because I didn't want to change it to a while loop like all the others. Same goes for "guess".
+         Normally I'd assume it's bad form to be inconsistent like that but "if it ain't broke..."*/
         if (testScoresInput != -1) {
          testTotal += testScoresInput;
          tests++;
