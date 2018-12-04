@@ -270,7 +270,6 @@ if ((cardLength == 15) && (luhnValid == true) && (cardString[0] == 3) && ((Numbe
 
 function guess() {
 let target = Math.random() * 1000;
-console.log(target)
 let guessCount;
 let guess;
 let found;
@@ -279,7 +278,7 @@ let hint;
 
   while (true) {
    guess = Number(prompt("Please guess a whole number between 1 and 1000"));
-   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000 && guess == target) {
+   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000) {
      break;
    }
   }
