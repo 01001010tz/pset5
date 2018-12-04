@@ -409,15 +409,17 @@ function gymnastics() {
    *       scores.push(secondScore);  // will likely be different than mine
    */
    let i;
-   let score;
-   for ( i = 0; i = 5; i++) {
-    let score = prompt("Please enter a score between 0.0 and 10.0");
-    if ((score >= 0.0) && (score <= 10.0)) {
+   let score = -1;
+   for ( i = 0; i < 5; i++) {
+     while (score < 0 || score > 10) {
+       score = Number(prompt("Please enter a score between 0.0 and 10.0  " +  "Input " + (i+1)  ));
+     }
       scores.push(score);
+      score = -1;
     }
-   }
 
-   let scoresTotal = scores.reduce(getSum)
+
+   let scoresTotal = scores.reduce((a,b) => a + b , 0);
    let maxSI = scores.indexOf(Math.max(...scores));
    let minSI = scores.indexOf(Math.min(...scores));
    scoresTotal -= (scores[maxSI] + scores[minSI]);
@@ -475,7 +477,7 @@ function gymnastics() {
        while (testScoresDone == false) {
         do {
          testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
-       } while ((!Number.testScoresInput > 0) || (Number.testScoresInput > 100))
+       } while ((!Number(testScoresInput) > 0) || (Number(testScoresInput) > 100));
        //Probably will need to fix this with just "while" later, considering past failures with do whiles.
         if (testScoresInput != -1) {
          testTotal += testScoresInput;
@@ -485,7 +487,7 @@ function gymnastics() {
        }
       }
 
-       let testAvg = testTotal/tests;
+       let testAvg = (testTotal/tests).toFixed(2);
 
 
        let quizScoresDone = false;
@@ -493,16 +495,16 @@ function gymnastics() {
        while (quizScoresDone == false) {
         do {
          quizScoresInput = prompt("Please enter either a quiz score between 1 and 100 or -1 to indicate that you have finished entering quiz scores");
-       } while ((!Number.quizScoresInput > 0) || (Number.quizScoresInput > 100))
+       } while ((!Number(quizScoresInput) > 0) || (Number(quizScoresInput) > 100))
         if (quizScoresInput != -1) {
          quizTotal += quizScoresInput;
          quizzes++;
         }else {
-         testScoresDone = true;
+         quizScoresDone = true;
         }
       }
 
-       let quizAvg = quizTotal/quizzes;
+       let quizAvg = (quizTotal/quizzes).toFixed(2);
 
 
        let hwScoresDone = false;
@@ -510,7 +512,7 @@ function gymnastics() {
        while (hwScoresDone == false) {
         do {
          hwScoresInput = prompt("Please enter either a homework score between 1 and 100 or -1 to indicate that you have finished entering homework scores");
-       } while ((!Number.hwScoresInput > 0) || (Number.hwScoresInput > 100))
+       } while ((!Number(hwScoresInput) > 0) || (Number(hwScoresInput) > 100));
 
       if (hwScoresInput != -1) {
          homeworkTotal += hwScoresInput;
@@ -520,12 +522,12 @@ function gymnastics() {
         }
       }
 
-       let hwAvg = homeworkTotal/homeworks;
+       let hwAvg = (homeworkTotal/homeworks).toFixed(2);
 
        let oaAvg = ((testAvg * .6) + (quizAvg * .3) + (hwAvg * .1)).toFixed(2)
 
        let Averages = document.getElementById("report-card-output");
-       Averages.innerHTML = "Tests: " + testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/> Grade: " + oaAvg;
+       Averages.innerHTML = "Tests: " + testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/>Grade: " + oaAvg;
       /////////////////////// DO NOT MODIFY
       check('report-card', // DO NOT MODIFY
         testTotal, ////////// DO NOT MODIFY
