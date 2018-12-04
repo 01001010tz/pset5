@@ -172,7 +172,6 @@ function credit() {
   //////////// DO NOT MODIFY
   let card; // DO NOT MODIFY
   //////////// DO NOT MODIFY
-let cardString;
 
 while (true) {
   card = Number(prompt("Please enter a credit card number"));
@@ -180,60 +179,57 @@ while (true) {
     break;
   }
 }
-//This bit keepts remprompting them until they put in a whole positive number and then stops
 
-cardString = Number.toString(card);
-//This bit's because I needed a string version of the card
-
+console.log("All good at the start");
+let cardString = card.toString();
 let luhnValid;
-let luhnTotal;
-let i;
-//This bit's to declare the variables for later
+let luhnTotal=0;
+let cardLength = cardString.length;
+let luhnEvensum=0;
+let luhnOddsum=0;
+let evenSum = 0
+let characterSum = 0;
 
-if (cardString.length % 2 == 0) {
-  i = 0;
-} else {
-  i = 1;
-}
-//This makes sure I get the second to last character since the 
-//actual algorithm reads right to left but the character thing reads left to right
-  
-for (i; i >= cardString.length; i += 2) {
-   luhnTotal += (2 * Number(cardString.charAt(i)));
-   // alert("luhn pt 1 works");
-}
-//This bit gets every other one and doubles it as per the algorithm
 
-for (i - 1; i >= cardString.length; i += 2) {
-  luhnTotal += Number(cardString.charAt(i));
-  // alert("luhn pt 2 works");
+for (let i = cardLength - 2; i >= 0; i -= 2) {
+   evenSum = (2 * Number(cardString[i]));
+   let character=String(evenSum)
+
+  for (let j = 0; j <= character.length - 1; j++) {
+      characterSum += Number(character[j])
+      console.log("luhn pt 1 works" + characterSum);
+    }
+
+
+  luhnEvensum += characterSum
+
 }
-//This bit gets the OTHER every other one and adds it as per the algorithm
+
+for (i = cardLength-1; i >= 0; i -= 2) {
+  luhnOddsum += Number(cardString[i]);
+  console.log("luhn pt 2 works" + luhnOddsum);
+}
+luhnTotal=luhnOddsum+luhnEvensum;
 
 if (luhnTotal % 10 == 0){
   luhnValid = true;
-  // alert("luhn valid");
+  console.log("luhn valid");
 }
-  
-//This makes sure the last piece of the algorithm works by dividing it by 10.If it divides, it fits.
 
-if ((cardString.length == 15) && (luhnValid == true) && (card.charAt(0) == 3) && ((Number(card.charAt(1)) == 4) || (Number(card.charAt(1)) == 7))) {
+
+if ((cardLength == 15) && (luhnValid == true) && (cardString[0] == 3) && ((Number(cardString[1]) == 4) || (Number(cardString[1]) == 7))) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/amex.png'>";
-  alert("amex works");
-  //The first if covers Amex, which is 15 characters long, begins with 34/37, and passes Luhn's
-} else if ((cardString.length == 16) && (luhnValid == true) && (card.CharAt(0) == 5) && ((Number(card.charAt(1)) > 0)  && (Number(card.charAt(1)) < 6))) {
+  console.log("amex works");
+} else if ((cardLength == 16) && (luhnValid == true) && (cardString[0] == 5) && ((Number(cardString[1]) > 0)  && (Number(cardString[1]) < 6))) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/mastercard.png'>";
-  //The second covers Mastercard, which is 16 long, begins with 51-55, and passes Luhn's
-} else if (((cardString.length == 13) || (card.length == 16)) && (luhnValid == true) && (Number(card.CharAt(0)) == 4)) {
+} else if (((cardLength == 13) || (cardLength == 16)) && (luhnValid == true) && (Number(cardString[0]) == 4)) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/visa.png'>";
-  //The third if covers Visa, which is 13 or 16 long, start with 4, and pass Luhn's
 } else {
   imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/invalid.png'>";
-  //This bit's for everything else
 }
 
 
@@ -273,41 +269,37 @@ if ((cardString.length == 15) && (luhnValid == true) && (card.charAt(0) == 3) &&
  */
 
 function guess() {
-let target = Math.randomInt(1, 1000);
+let target = Math.random() * 1000;
+console.log(target)
 let guessCount;
 let guess;
 let found;
 let AllGuesses;
+let hint;
 
   while (true) {
    guess = Number(prompt("Please guess a whole number between 1 and 1000"));
-   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000) {
+   if (Number.isInteger(guess) && guess >= 1 && guess <= 1000 && guess == target) {
      break;
    }
   }
 
-  //Loops until you find it, gives GuessCount.
-  for (guessCount = 0; found == false; guessCount++) {
-    if (guess > target) {
-      hint = document.getElementById("guess-output");
-      hint.innerHTML = "Guess was greater than target. Try again!";
-    }
-    if (guess < target) {
-      hint = document.getElementById("guess-output");
-      hint.innerHTML = "Guess was less than target. Try again!";
-    }
-    //If it's right
-    if (guess == target) {
-      found = true;
-      hint = document.getElementById("guess-output");
-      hint.innerHTML = "Congratulations, you've found the number!";
-    }
-    //Prints previous guesses, number of guesses
-    AllGuesses = AllGuesses + "guess";
-    AllGuesses = document.getElementById("guess-output");
-    AllGuesses.innerHTML = AllGuesses + "guessCount";
-  }
 
+while (found == false) {
+  if (guess > target) {
+    hint = "Guess was greater than target. Try again!";
+  } else if  (guess < target) {
+    hint = "Guess was less than target. Try again!";
+
+  } else if (guess == target) {
+    found = true;
+    hint = "Congratulations, you've found the number!";
+    break;
+  }
+  AllGuesses = AllGuesses + "guess";
+  AllGuesses = document.getElementById("guess-output");
+  AllGuesses.innerHTML = AllGuesses + "guessCount" + "hint";
+}
 
   ////////////////// DO NOT MODIFY
   check('guess'); // DO NOT MODIFY
@@ -458,93 +450,90 @@ function gymnastics() {
  *
  * All output should be displayed on the page, not printed to the console.
  */
+ function reportCard() {
 
-function reportCard() {
+   ///////////////////////// DO NOT MODIFY
+   let testTotal = 0; ////// DO NOT MODIFY
+   let quizTotal = 0; ////// DO NOT MODIFY
+   let homeworkTotal = 0; // DO NOT MODIFY
+   ///////////////////////// DO NOT MODIFY
 
-  ///////////////////////// DO NOT MODIFY
-  let testTotal = 0; ////// DO NOT MODIFY
-  let quizTotal = 0; ////// DO NOT MODIFY
-  let homeworkTotal = 0; // DO NOT MODIFY
-  ///////////////////////// DO NOT MODIFY
+   /*
+    * NOTE: The 'testTotal', 'quizTotal', and 'homeworkTotal' variables
+    *       should be representative of the sum of the test scores, quiz
+    *       scores, and homework scores the user enters, respectively.
+    */
 
-  /*
-   * NOTE: The 'testTotal', 'quizTotal', and 'homeworkTotal' variables
-   *       should be representative of the sum of the test scores, quiz
-   *       scores, and homework scores the user enters, respectively.
-   */
+   ///////////////////// DO NOT MODIFY
+   let tests = 0; ////// DO NOT MODIFY
+   let quizzes = 0; //// DO NOT MODIFY
+   let homeworks = 0; // DO NOT MODIFY
+   ///////////////////// DO NOT MODIFY
 
-  ///////////////////// DO NOT MODIFY
-  let tests = 0; ////// DO NOT MODIFY
-  let quizzes = 0; //// DO NOT MODIFY
-  let homeworks = 0; // DO NOT MODIFY
-  ///////////////////// DO NOT MODIFY
+      let testScoresDone = false;
+       let testScoresInput;
+       while (testScoresDone == false) {
+        do {
+         testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
+       } while ((!Number.testScoresInput > 0) || (Number.testScoresInput > 100))
+       //Probably will need to fix this with just "while" later, considering past failures with do whiles.
+        if (testScoresInput != -1) {
+         testTotal += testScoresInput;
+         tests++;
+        }else {
+         testScoresDone = true;
+       }
+      }
 
-  /*
-   * NOTE: The 'tests', 'quizzes', and 'homeworks' variables should be
-   *       representative of the number of tests, quizzes, and homework
-   *       grades the user enters, respectively.
-   */
-   let testScoresDone = false;
-   let testScoresInput;
-   while (testScoresDone == false) {
-    do {
-     testScoresInput = prompt("Please enter either a test score between 1 and 100 or -1 to indicate that you have finished entering test scores");
-   } while ((!Number.testScoresInput > 0) || (Number.testScoresInput > 100))
-   //Probably will need to fix this with just "while" later, considering past failures with do whiles.
+       let testAvg = testTotal/tests;
 
-    if (testScoresInput != -1) {
-     testTotal += testScoresInput;
-     tests++;
-    }else {
-     testScoresDone = true;
+
+       let quizScoresDone = false;
+       let quizScoresInput;
+       while (quizScoresDone == false) {
+        do {
+         quizScoresInput = prompt("Please enter either a quiz score between 1 and 100 or -1 to indicate that you have finished entering quiz scores");
+       } while ((!Number.quizScoresInput > 0) || (Number.quizScoresInput > 100))
+        if (quizScoresInput != -1) {
+         quizTotal += quizScoresInput;
+         quizzes++;
+        }else {
+         testScoresDone = true;
+        }
+      }
+
+       let quizAvg = quizTotal/quizzes;
+
+
+       let hwScoresDone = false;
+       let hwScoresInput;
+       while (hwScoresDone == false) {
+        do {
+         hwScoresInput = prompt("Please enter either a homework score between 1 and 100 or -1 to indicate that you have finished entering homework scores");
+       } while ((!Number.hwScoresInput > 0) || (Number.hwScoresInput > 100))
+
+      if (hwScoresInput != -1) {
+         homeworkTotal += hwScoresInput;
+         homeworks++;
+        }else {
+         hwScoresDone = true;
+        }
+      }
+
+       let hwAvg = homeworkTotal/homeworks;
+
+       let oaAvg = ((testAvg * .6) + (quizAvg * .3) + (hwAvg * .1)).toFixed(2)
+
+       let Averages = document.getElementById("report-card-output");
+       Averages.innerHTML = "Tests: " + testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/> Grade: " + oaAvg;
+      /////////////////////// DO NOT MODIFY
+      check('report-card', // DO NOT MODIFY
+        testTotal, ////////// DO NOT MODIFY
+        tests, ////////////// DO NOT MODIFY
+        quizTotal, ////////// DO NOT MODIFY
+        quizzes, //////////// DO NOT MODIFY
+        homeworkTotal, ////// DO NOT MODIFY
+        homeworks /////////// DO NOT MODIFY
+      ); //////////////////// DO NOT MODIFY
+      /////////////////////// DO NOT MODIFY
     }
-   }
-   let testAvg = testTotal/tests;
-
-
-   let quizScoresDone = false;
-   let quizScoresInput;
-   while (quizScoresDone == false) {
-    do {
-     quizScoresInput = prompt("Please enter either a quiz score between 1 and 100 or -1 to indicate that you have finished entering quiz scores");
-   } while ((!Number.quizScoresInput > 0) || (Number.quizScoresInput > 100))
-    if (quizScoresInput != -1) {
-     quizTotal += quizScoresInput;
-     quizzes++;
-    }else {
-     testScoresDone = true;
-    }
-   }
-   let quizAvg = quizTotal/quizzes;
-
-
-   let hwScoresDone = false;
-   let hwScoresInput;
-   while (hwScoresDone == false) {
-    do {
-     hwScoresInput = prompt("Please enter either a homework score between 1 and 100 or -1 to indicate that you have finished entering homework scores");
-   } while ((!Number.hwScoresInput > 0) || (Number.hwScoresInput > 100))
-    if (hwScoresInput != -1) {
-     homeworkTotal += hwScoresInput;
-     homeworks++;
-    }else {
-     hwScoresDone = true;
-    }
-   }
-   let hwAvg = homeworkTotal/homeworks;
-
-   let oaAvg = ((testAvg * .6) + (quizAvg * .3) + (hwAvg * .1)).toFixed(2)
-
-   let Averages = document.getElementById("report-card-output");
-   Averages.innerHTML = "Tests: " + testAvg + "<br/>Quizzes: " + quizAvg + "<br/>Homework: " + hwAvg + "<br/> Grade: " + oaAvg;
-  /////////////////////// DO NOT MODIFY
-  check('report-card', // DO NOT MODIFY
-    testTotal, ////////// DO NOT MODIFY
-    tests, ////////////// DO NOT MODIFY
-    quizTotal, ////////// DO NOT MODIFY
-    quizzes, //////////// DO NOT MODIFY
-    homeworkTotal, ////// DO NOT MODIFY
-    homeworks /////////// DO NOT MODIFY
-  ); //////////////////// DO NOT MODIFY
-  /////////////////////// DO NOT MODIFY
-}
