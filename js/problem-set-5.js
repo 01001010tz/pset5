@@ -53,17 +53,7 @@ layer=layer+"</code>"
 pyramid = document.getElementById("mario-easy-output");
 pyramid.innerHTML = layer;
 
-/*for (rowCount = 1; rowCount <= height; rowCount++) {
-  for (let i=1; spaceCoun>=0; spaceCount--) {
-    layer += "&nbsp";
-  }
-  for (starCount = 1; starCount = rowCount; starCount++) {
-    layer += "#";
-  }
-  Pyramid = document.getElementById("mario-easy-output");
-  Pyramid.innerHTML = "spaceCount" + "starCount";
-}
-*/
+
   ////////////////////////// DO NOT MODIFY
   check('mario', height); // DO NOT MODIFY
   ////////////////////////// DO NOT MODIFY
@@ -180,13 +170,12 @@ while (true) {
   }
 }
 
-console.log("All good at the start");
 let cardString = card.toString();
 let luhnValid;
 let luhnTotal=0;
 let cardLength = cardString.length;
-let luhnEvensum=0;
-let luhnOddsum=0;
+let luhnEvenSum=0;
+let luhnOddSum=0;
 let evenSum = 0
 let characterSum = 0;
 
@@ -197,30 +186,23 @@ for (let i = cardLength - 2; i >= 0; i -= 2) {
 
   for (let j = 0; j <= character.length - 1; j++) {
       characterSum += Number(character[j])
-      console.log("luhn pt 1 works" + characterSum);
     }
-
-
   luhnEvensum += characterSum
-
 }
 
 for (i = cardLength-1; i >= 0; i -= 2) {
-  luhnOddsum += Number(cardString[i]);
-  console.log("luhn pt 2 works" + luhnOddsum);
+  luhnOddSum += Number(cardString[i]);
 }
-luhnTotal=luhnOddsum+luhnEvensum;
+luhnTotal=luhnOddSum+luhnEvenSum;
 
 if (luhnTotal % 10 == 0){
   luhnValid = true;
-  console.log("luhn valid");
 }
 
 
 if ((cardLength == 15) && (luhnValid == true) && (cardString[0] == 3) && ((Number(cardString[1]) == 4) || (Number(cardString[1]) == 7))) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/amex.png'>";
-  console.log("amex works");
 } else if ((cardLength == 16) && (luhnValid == true) && (cardString[0] == 5) && ((Number(cardString[1]) > 0)  && (Number(cardString[1]) < 6))) {
   let imgOutput = document.getElementById("credit-output");
   imgOutput.innerHTML = "<img src='images/mastercard.png'>";
@@ -342,7 +324,6 @@ while (true) {
     break;
   }
 }
-//Need to double check reprompt parameters; will come back to correct.
   if(windspeed < 39){
     Category = document.getElementById("hurricane-output");
     Category.innerHTML = "The skies are calm...";
