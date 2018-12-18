@@ -516,76 +516,120 @@ function gymnastics() {
 
 function reportCard() {
   let testTotal = 0;
+  //This line declares a variable for later
   let quizTotal = 0;
+    //This line declares a variable for later
   let homeworkTotal = 0;
+    //This line declares a variable for later
   let tests = 0;
+    //This line declares a variable for later
   let quizzes = 0;
+    //This line declares a variable for later
   let homeworks = 0;
+    //This line declares a variable for later
 
   let testScore = -2;
+  //This line declares an "incorrect" variable other than -1 so it can be used to finish an input chain later
   while (testScore !== -1) {
+  //This line begins a while loop that checks for the end chain variable
     testScore = Number(prompt("Test: "));
+    //This line prompts the user continuously for test scores
 
     if (testScore === null) {
       break;
+      //This line breaks if there is no input
     } else if (Number.isNaN(testScore)) {
       testScore = -2;
+      //This line resets and reprompts if the test score is not a number
     } else if (testScore === -1) {
+    //This line checks for the end chain variable to stop prompting for test scores
        break;
+       //This line ends the test scores
     } else if (testScore >= 0 && testScore <= 100) {
+    //This line checks to see that the scores are within the correct parameters
       tests++;
+      //This line adds to the test counter
       testTotal = testTotal + testScore;
+      //This line adds to the total test counter
     }
   }
 
   let quizScore = -2;
+  //This line does the same thing as its test counterpart
   while (quizScore !== -1) {
+  //This line does the same thing as its test counterpart
     quizScore = Number(prompt("Quiz: "));
+  //This line does the same thing as its test counterpart
 
     if (quizScore === null) {
+  //This line does the same thing as its test counterpart
       break;
     } else if (Number.isNaN(quizScore)) {
+  //This line does the same thing as its test counterpart
       quizScore = -2;
     } else if (quizScore === -1) {
+  //This line does the same thing as its test counterpart
        break;
     } else if (quizScore >= 0 && quizScore <= 100) {
+  //This line does the same thing as its test counterpart
       quizzes++;
+  //This line does the same thing as its test counterpart
       quizTotal = quizTotal + quizScore;
+  //This line does the same thing as its test counterpart
     }
   }
 
   let homeworkScore = -2;
+  //This line does the same thing as its test counterpart
   while (homeworkScore !== -1) {
+  //This line does the same thing as its test counterpart
     homeworkScore = Number(prompt("Homework: "));
+  //This line does the same thing as its test counterpart
 
     if (homeworkScore === null) {
       break;
+  //This line does the same thing as its test counterpart
     } else if (Number.isNaN(homeworkScore)) {
       homeworkScore = -2;
+  //This line does the same thing as its test counterpart
     } else if (homeworkScore === -1) {
        break;
+  //This line does the same thing as its test counterpart
     } else if (homeworkScore >= 0 && homeworkScore <= 100) {
       homeworks++;
+  //This line does the same thing as its test counterpart
       homeworkTotal = homeworkTotal + homeworkScore;
+  //This line does the same thing as its test counterpart
     }
   }
 
   let testAverage = null;
+  //This line declares a variable for later
   let quizAverage = null;
+  //This line declares a variable for later
   let homeworkAverage = null;
+  //This line declares a variable for later
   let average = null;
+  //This line declares a variable for later
 
   if (testScore === null || quizScore === null || homeworkScore === null) {
+  //This line begins an if statement that makes sure the averages work
     document.getElementById("report-card-output").innerHTML = "";
+    //This line outputs nothing if the averages aren't values
   } else {
     testAverage = (testTotal / tests).toFixed(2);
+    //This line averages tests
     quizAverage = (quizTotal / quizzes).toFixed(2);
+    //This line averages quizzes
     homeworkAverage = (homeworkTotal / homeworks).toFixed(2);
+    //This line averages homework
     average = (testAverage * 0.6 + quizAverage * 0.3 + homeworkAverage * 0.1).toFixed(2);
+    //This line creates a weighted average
 
     let result = `Tests: ${testAverage}<br>Quizzes: ${quizAverage}<br>Homework: ${homeworkAverage}<br>Grade: ${average}`;
+    //This line templates the output
     document.getElementById("report-card-output").innerHTML = result;
-  }
+  }//This line outputs the result
 
   check("report-card", testTotal, tests, quizTotal, quizzes, homeworkTotal, homeworks);
   // This line checks that the output is correct.
